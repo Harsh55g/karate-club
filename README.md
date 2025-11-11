@@ -1,8 +1,8 @@
 # DSC212: Graph Theory  
 ### Research Assignment — *Modularity on the Karate Club Graph*  
 
-**Name:** Nikhil Verma  
-**Roll Number:**IMS24158 
+**Name:** Harsh Suthar  
+**Roll Number:**IMS24101 
 
 ---
 
