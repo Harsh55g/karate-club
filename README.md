@@ -83,5 +83,5 @@ Even with modest modularity (Q = 0.1643), the algorithm effectively identifies m
 ---
 
 **Submitted by:**  
-*Nikhil Verma*  
+*Harsh Suthar*  
 2nd Year BS–MS Student, IISER Thiruvananthapuram  
