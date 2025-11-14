@@ -1,0 +1,7 @@
+numpy==2.3.4
+networkx==3.5
+matplotlib==3.10.7
+# Optional if you want to run the notebook with nbconvert
+nbformat
+nbconvert
+ipykernel
