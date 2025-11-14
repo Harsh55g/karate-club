@@ -1,87 +1,67 @@
-# DSC212: Graph Theory  
-### Research Assignment — *Modularity on the Karate Club Graph*  
+DSC212 - Modularity on the Karate Club Graph
 
-**Name:** Harsh Suthar  
-**Roll Number:**IMS24101 
+This project implements the recursive spectral modularity partitioning algorithm to find communities within the classic Zachary Karate Club graph. This implementation is based on the research assignment for the DSC212: Graph Theory module.
 
----
+Student: Harsh Suthar
+Roll No: IMS24101
 
-## 📘 Project Overview
-This repository contains my submission for the **Research Assignment** of the course **DSC212: Graph Theory**, focusing on **Modularity and Community Detection** using **Spectral Methods**.
+About This Project
 
-The assignment applies **recursive spectral modularity partitioning** on the classic **Zachary’s Karate Club network**, one of the most well-known datasets in social network analysis.
+The main goal is to use graph mathematics to see if we can automatically find the "social fault lines" in the Karate Club network that led to its real-world split into two factions. We do this by implementing a community detection algorithm from scratch.
 
----
+Core Logic
 
-## 🧠 Objective
-To implement a **spectral modularity-based community detection algorithm** that:
-1. Detects multiple communities in the Karate Club graph using recursive bisection.  
-2. Visualizes the graph after each split with community coloring.  
-3. Computes and tracks network metrics:
-   - Degree Centrality  
-   - Betweenness Centrality  
-   - Closeness Centrality  
-   - Clustering Coefficient  
-4. Analyzes how these metrics evolve as the community structure becomes more refined.  
+Modularity Matrix (B): We calculate the $n \times n$ modularity matrix $B = A - \frac{kk^T}{2m}$, where $A$ is the adjacency matrix, $k$ is the degree vector, and $m$ is the total number of edges. This matrix compares the actual number of edges to the expected number in a random graph.
 
----
+Spectral Bipartition: To split a community, we find the leading eigenvector ($u_1$) of its restricted modularity matrix ($B^{(C)}$).
 
-## ⚙️ Implementation Summary
-- **Graph Dataset:** Zachary’s Karate Club Graph (NetworkX built-in)
-- **Algorithm:**
-  - Compute modularity matrix  
-  - Extract the **leading eigenvector** of `B = A - (k kᵀ)/(2m)`
-  - Partition nodes by the sign of the eigenvector components  
-  - Recurse on subcommunities as long as the **largest eigenvalue (λ₁) > 0**  
-- **Libraries Used:**  
-  `numpy`, `networkx`, `matplotlib`, `seaborn`, `pandas`
+Splitting: We partition the nodes into two new groups based on the sign of the entries in $u_1$ (positive or negative).
 
----
+Stopping Condition: We only split a community if the corresponding leading eigenvalue ($\lambda_1$) is positive. If $\lambda_1 \le 0$, splitting would not improve the network's overall modularity, so we stop.
 
-## 📊 Key Results
-- **Final modularity:** `Q = 0.1643`  
-- The algorithm successfully identifies community divisions that reflect the real-world split between **Mr. Hi’s** group and the **Officer’s** group.  
-- **Nodes 0 and 33** consistently remain most central — acting as structural bridges between communities.  
-- **Metric evolution plots** and **heatmaps** visualize how network structure changes with each split.
+Recursion: We apply this process recursively to the new, smaller communities until no more positive eigenvalues are found.
 
----
+Files
 
-## 📈 Visual Outputs
-The Jupyter Notebook (`karate_club_assignment.ipynb`) includes:
-- Graph visualizations for each iteration  
-- Modularity value displayed in plot titles  
-- Line plots of centrality metrics evolution  
-- Heatmaps summarizing all metrics across nodes and iterations  
+DSC212_Assignment_HarshSuthar.ipynb: The main Jupyter Notebook containing all the Python code, analysis, and visualizations.
 
----
+How to Run
 
-## 🧩 Discussion Summary
-- **Degree & Betweenness Centrality:** Highest for nodes 0 and 33 — they function as network bridges.  
-- **Closeness Centrality:** Decreases slightly as communities become more modular (greater separation).  
-- **Clustering Coefficient:** Remains high within tight-knit subgroups, reflecting stable intra-community cohesion.  
-- The recursive spectral modularity method captures statistically meaningful divisions even when total modularity stops increasing — consistent with **Newman (2006)**.
+Prerequisites: You need a Python environment with Jupyter Notebook (or Jupyter Lab, VS Code, etc.) and the following libraries installed:
 
----
+numpy
 
-## 📚 Reference
-> M. E. J. Newman (2006). *Modularity and community structure in networks*.  
+networkx
+
+matplotlib
+
+seaborn (used for plot styling)
+
+You can install them using pip:
+
+pip install numpy networkx matplotlib seaborn
 
 
----
+Open the Notebook: Launch your Jupyter environment.
 
-## 🧾 File Structure
-├── karate_club_assignment.ipynb # Main Jupyter Notebook
+jupyter notebook
 
-├── README.md # Project documentation (this file)
 
----
+or
 
-## 🏁 Conclusion
-This project demonstrates how **spectral graph theory** and **modularity optimization** can uncover latent social structures from network connectivity alone.  
-Even with modest modularity (Q = 0.1643), the algorithm effectively identifies meaningful communities and highlights central figures — showing the power of spectral methods in network science.
+jupyter lab
 
----
 
-**Submitted by:**  
-*Harsh Suthar*  
-2nd Year BS–MS Student, IISER Thiruvananthapuram  
+Run the Code: Open the DSC212_Assignment_HarshSuthar.ipynb file. You can run all cells from top to bottom ("Run" > "Run All Cells") to see the full analysis, all the graph visualizations at each step, and the final metric evolution plots.
+
+Summary of Tasks Completed
+
+Task 1: Implemented the recursive spectral modularity partitioning.
+
+Task 2: Visualized the graph after each split, with communities colored.
+
+Task 3: Computed degree_centrality, betweenness_centrality, closeness_centrality, and clustering coefficient at each step.
+
+Task 4: Plotted the evolution of these metrics for every node across all iterations.
+
+Task 5: Wrote a discussion on the results, noting how the centrality of key nodes (like 0 and 33) changes as the partition progresses.
