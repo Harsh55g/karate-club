@@ -28,10 +28,4 @@ pip install -r requirements.txt
 python run_assignment.py
 ```
 
-4. Output images will be saved as `visual_*.png` and `betweenness_evolution.png` in the project folder.
-
-If you prefer to open the notebook and run interactively, open `DSC212_Assignment_HarshSuthar_fixed.ipynb` in VS Code or Jupyter and run all cells.
-
-Notes
-- I repaired a corrupted notebook and provided a working script for headless execution to guarantee reproducible outputs.
-- If you'd like, I can also create a short GitHub Actions workflow to run the script and attach generated artifacts automatically on push.
+4. Output images will be saved as `visual_*.png` and `betweenness_evolution.png` in the project folder
